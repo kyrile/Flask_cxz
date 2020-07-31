@@ -1,5 +1,5 @@
 from flask_script import Manager
-from models.user import db, Role
+from models.user import db, User
 from myapp import app
 from myapp.views import index, user
 

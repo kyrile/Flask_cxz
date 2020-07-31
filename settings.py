@@ -1,4 +1,11 @@
 from urllib.parse import quote_plus as cxz_plus
+import os
+
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+BASE_DIR = os.path.join(PROJECT_DIR, 'myapp')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+USER_DIR = os.path.join(STATIC_DIR, 'user')
 
 
 class Dev():

@@ -7,19 +7,24 @@
     <title>{{ user.nick_name }}的个人中心</title>
 </head>
 <body>
-<h3>修改{{ user.phone }}用户的头像</h3>
-<p>
-    <img src="/static/{% if user.photo %}{{ user.photo }}{% else %}images/default_img.png{% endif %}"
-         width="100"
-         height="100">
-</p>
 <!-- 如果form表单请求的路径是当前url路径,可以省略 action='user/modify' -->
-<form method="post" enctype="multipart/form-data">
-    <input name="user_photo" type="file">
-    <button>开始上传头像</button>
+<form method="post" action="/user/modify">
+    用户名:<input id="nick_name" type="text" name="nick_name" value="{{ user.nick_name }}"><br/>
+    密码:<input password="password" type="password" name="password" value="{{ user.auth_key }}"><br/>
+    <button>保存修改</button>
 </form>
-<p style="color:red;">
-    {{ msg }}
-</p>
+<script>
+    function $(id) {
+         return document.getElementById(id);
+     }
+
+     // 设置表单提交函数
+     document.forms[0].onsubmit = function(ev){
+          if(! /\w{6,}/.test(this.passwd.value)){
+             $('val_info').innerHTML = '口令是包含数字和字母的至少6位的字符串';
+             return false
+         }
+     }
+</script>
 </body>
 </html>

@@ -38,8 +38,6 @@
         if(confirm('是否确定更改头像')){
             $('selectFile').click()
         }
-        let url ="{{ url_for('userBlue.upload_photo') }}";
-        alert(url)
     }
 
     function upload(file) {
@@ -49,19 +47,16 @@
         if(file.type.startsWith('image/')){
             if(file.size <= 1024*1024*8){
                 // 任务2： 使用fetch()函数实现文件上传
-                let url ="{{ url_for('userBlue.upload_photo') }}";
+                let url ="{{ url_for('userBlue.upload_photo') }}"
                 let request = new XMLHttpRequest();
-                request.open('post',url, true);
+                request.open('post', url, true);
                 request.onload = function (ev) {
-                    if(request.status==200 && request.readyState==4){
-                        respText = request.responseText;
-                        respJson = JSON.parse(respText)
+                    respText = request.responseText;
+                    respJson = JSON.parse(respText)
+                    console.log(respText, respJson)
+                    $('photoImg').src='/static/'+respJson.path;
 
-                        console.log(respText, respJson)
-                        $('photoImg').src='/static/'+respJson.path;
-                    }
                 };
-
                 let formdata = new FormData();
                 formdata.append('photo', file)
 

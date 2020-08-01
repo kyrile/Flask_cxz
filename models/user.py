@@ -3,8 +3,8 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from models import db
 
 user_role = db.Table('user_role',
-                     Column('user_id',Integer, ForeignKey('user.id', name='user_role_fk')),
-                     Column('role_id',Integer, ForeignKey('role.id', name='user_role_pk')),
+                     Column('user_id', Integer, ForeignKey('user.id', name='user_role_fk')),
+                     Column('role_id', Integer, ForeignKey('role.id', name='user_role_pk')),
                      )
 
 
@@ -26,9 +26,6 @@ class User(db.Model):
     id = Column(Integer,
                 primary_key=True,
                 autoincrement=True)
-    phone = Column(String(20),
-                   unique=True,
-                   nullable=False)
     auth_key = Column(String(100), nullable=False)
     nick_name = Column(String(20))
     photo = Column(String(100))
